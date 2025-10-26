@@ -13,20 +13,25 @@ module Ollama
         @then = nil
       end
 
+      # method DSL sugar
       def model(name) = @model = name
       def system(text) = @session.add("system", text)
       def user(text)   = @session.add("user", text)
 
+      # streaming callback 
       def on_chunk(&blk) = @events[:chunk] = blk
       def on_done(&blk)  = @events[:done]  = blk
 
+      # flash helper
       def flash = @session.flash if @session.respond_to?(:flash)
 
+     # chaining - create a new Dsl instance
       def then(&blk)
         @then = DSL.new(@session).instance_eval(&blk)
         self
       end
 
+      # execute action
       def execute
         client = Client.new
         path = @session.messages.any? ? "/api/chat" : "/api/generate"
