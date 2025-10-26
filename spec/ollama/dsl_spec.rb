@@ -8,3 +8,14 @@ RSpec.describe Ollama::Dsl do
   end
 
 end
+
+RSpec.describe Ollama::Dsl::DSL do
+  let(:session) { double("Session", add: nil, messages: []) }
+
+  it "Set prompt" do
+    dsl = described_class.new(session)
+    dsl.prompt = "Hello world"
+    expect(dsl.prompt).to eq("Hello world")
+  end
+end
+
