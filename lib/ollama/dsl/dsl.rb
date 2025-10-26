@@ -3,11 +3,13 @@
 module Ollama
   module Dsl
     class DSL
+      attr_accessor :prompt 
+
       def initialize(session)
-        @session = session
-        @events = {}
-        @model = "llama3"
-        @prompt = nil
+        @session = session  # Object store messages
+        @events = {}        # Callback hash to handle streaming events
+        @model = "llama3"  # Default model
+        @prompt = nil       
         @then = nil
       end
 
