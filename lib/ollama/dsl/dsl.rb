@@ -8,20 +8,19 @@ module Ollama
       def initialize(session)
         @session = session  # Object store messages
         @events = {}        # Callback hash to handle streaming events
-        @model = "llama3"  # Default model
+        @model = "llama3"   # Default model
         @prompt = nil       
         @then = nil
       end
 
       def model(name) = @model = name
-      def prompt(text) = @prompt = text
       def system(text) = @session.add("system", text)
       def user(text)   = @session.add("user", text)
 
       def on_chunk(&blk) = @events[:chunk] = blk
       def on_done(&blk)  = @events[:done]  = blk
 
-      def flash = @session.flash
+      def flash = @session.flash if @session.respond_to?(:flash)
 
       def then(&blk)
         @then = DSL.new(@session).instance_eval(&blk)
