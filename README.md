@@ -1,28 +1,57 @@
 # Ollama::Dsl
 
-TODO: Delete this and the text below, and describe your gem
+A Ruby DSL for interacting with Ollama LLMs, allowing streaming and structured prompts.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ollama/dsl`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
+Ollama DSL provides an easy-to-use Ruby interface to communicate with Ollama local or remote language models. It supports building prompts with system/user roles, handling streaming responses, and chaining prompts seamlessly.
 
 ## Usage
 
-TODO: Write usage instructions here
+After installing the gem:
+
+```bash
+    gem install ollama-dsl
+```
+
+Or in your `Gemfile`:
+
+```ruby
+    gem 'ollama-dsl'
+```
+
+Then run:
+
+```bash
+    bundle install
+```
+
+If you want to use it directly from GitHub:
+
+```ruby
+    gem 'ollama-dsl', git: 'https://github.com/rafaelmerlotto/ollama-dsl.git'
+```
+
+## Basic Example
+
+```ruby
+    require "ollama/dsl"
+    
+    Ollama::Dsl.run do
+      # Set the model
+      model "llama3"
+    
+      # Add system and user prompts
+      system "You are a marketing expert assistant."
+      user "Write a catchy Instagram post title about artisanal coffee."
+    
+      # Optional: handle streaming tokens
+      on_chunk { |token| print token }
+    
+      # Optional: handle the final response
+      on_done { |text| puts "\n\nFinal response:\n#{text}" }
+    
+      self # Important: ensure the DSL object is returned for execution
+    end
+```
 
 ## Development
 
@@ -32,7 +61,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ollama-dsl. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/ollama-dsl/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/rafaelmerlotto/ollama-dsl. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/rafaelmerlotto/ollama-dsl/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -40,4 +69,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Ollama::Dsl project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/ollama-dsl/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the Ollama::Dsl project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/rafaelmerlotto/ollama-dsl/blob/main/CODE_OF_CONDUCT.md).
