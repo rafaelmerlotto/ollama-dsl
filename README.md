@@ -9,48 +9,48 @@ Ollama DSL provides an easy-to-use Ruby interface to communicate with Ollama loc
 After installing the gem:
 
 ```bash
-    gem install ollama-dsl
+$ gem install ollama-dsl
 ```
 
 Or in your `Gemfile`:
 
 ```ruby
-    gem 'ollama-dsl'
+gem 'ollama-dsl'
 ```
 
 Then run:
 
 ```bash
-    bundle install
+$ bundle install
 ```
 
 If you want to use it directly from GitHub:
 
 ```ruby
-    gem 'ollama-dsl', git: 'https://github.com/rafaelmerlotto/ollama-dsl.git'
+gem 'ollama-dsl', git: 'https://github.com/rafaelmerlotto/ollama-dsl.git'
 ```
 
 ## Basic Example
 
 ```ruby
-    require "ollama/dsl"
-    
-    Ollama::Dsl.run do
-      # Set the model
-      model "llama3"
-    
-      # Add system and user prompts
-      system "You are a marketing expert assistant."
-      user "Write a catchy Instagram post title about artisanal coffee."
-    
-      # Optional: handle streaming tokens
-      on_chunk { |token| print token }
-    
-      # Optional: handle the final response
-      on_done { |text| puts "\n\nFinal response:\n#{text}" }
-    
-      self # Important: ensure the DSL object is returned for execution
-    end
+require "ollama/dsl"
+
+Ollama::Dsl.run do
+  # Set the model
+  model "llama3"
+
+  # Add system and user prompts
+  system "You are a marketing expert assistant."
+  user "Write a catchy Instagram post title about artisanal coffee."
+
+  # Optional: handle streaming tokens
+  on_chunk { |token| print token }
+
+  # Optional: handle the final response
+  on_done { |text| puts "\n\nFinal response:\n#{text}" }
+
+  self # Important: ensure the DSL object is returned for execution
+end
 ```
 
 ## Development
