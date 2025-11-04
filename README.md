@@ -1,5 +1,7 @@
 # Ollama::Dsl
 
+[![Gem Version](https://badge.fury.io/rb/ollama-dsl.svg)](https://badge.fury.io/rb/ollama-dsl)
+
 A Ruby DSL for interacting with Ollama LLMs, allowing streaming and structured prompts.
 
 Ollama DSL provides an easy-to-use Ruby interface to communicate with Ollama local or remote language models. It supports building prompts with system/user roles, handling streaming responses, and chaining prompts seamlessly.
