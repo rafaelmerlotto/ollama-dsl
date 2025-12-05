@@ -1,6 +1,7 @@
 # Ollama::Dsl
 
 [![Gem Version](https://badge.fury.io/rb/ollama-dsl.svg)](https://badge.fury.io/rb/ollama-dsl)
+[![Documentation](https://img.shields.io/badge/docs-rubydoc.info-blue)](https://rubydoc.info/gems/ollama-dsl)
 
 A Ruby DSL for interacting with Ollama LLMs, allowing streaming and structured prompts.
 
