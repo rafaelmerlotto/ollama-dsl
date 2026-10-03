@@ -1,9 +1,9 @@
 # frozen_string_literal: true
-$LOAD_PATH.unshift(File.expand_path(".", __dir__))
+$LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
 
-require_relative "dsl/session"
-require_relative "dsl/dsl"
-require_relative "dsl/client"
+require "ollama/dsl/session"
+require "ollama/dsl/dsl"
+require "ollama/dsl/client"
 
 session = Ollama::Dsl::Session.new
 dsl = Ollama::Dsl::DSL.new(session)
